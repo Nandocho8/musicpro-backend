@@ -1,5 +1,5 @@
 from django.db import models
-
+from users.models import *
 # Create your models here.
 
 class Type(models.Model):
@@ -25,8 +25,8 @@ class Subcategory(models.Model):
 class Product(models.Model):
     name = models.CharField('product', max_length=50, blank=False, null=False)
     description = models.TextField('description', blank=False, null=False)
-    price = models.IntegerField('price', max_digits=10,  blank=False, null=False)
-    cost = models.IntegerField('cost', max_digits=10,  blank=False, null=False)
+    price = models.IntegerField('price',  blank=False, null=False)
+    cost = models.IntegerField('cost',  blank=False, null=False)
     image = models.URLField('image')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=False, null=False)
 
@@ -36,8 +36,7 @@ class Product(models.Model):
 class Brand(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, blank=False, null=False)
-    quantity = models.IntegerField('quantity', null=False,blank=False, max_digits=3)
+    quantity = models.IntegerField('quantity', null=False,blank=False)
 
     def __str__(self):
         return f'Stock del producto {self.product} en la tienda {self.store} es {self.quantity}'
-

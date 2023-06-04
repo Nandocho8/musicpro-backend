@@ -28,12 +28,12 @@ class User(AbstractUser):
     CLIENT = 'C'
     GROCER = 'G'
     SALESMAN = 'S'
-    TYPE_USER[
+    TYPE_USER = [
         (ACCOUNTER, 'O'),
         (ADMIN, 'A'),
         (CLIENT, 'C'),
         (GROCER, 'G'),
-        (SALESMAN, 'S')
+        (SALESMAN, 'S'),
     ]
 
     username = models.CharField('username', blank=False, unique=True, max_length=60)
@@ -55,28 +55,28 @@ class Client(models.Model):
     address = models.CharField('address_cliente', max_length=50, blank=False, null=False)
     number_address = models.IntegerField('number_address',blank=False,null=False)    
     additional_address_info = models.CharField('additional_info',blank=True, max_length=50, null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
-    comuna = models.ForeignKey(Comuna, on_delete=models,null=False,blank=False)
+    user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
         return f'{self.user}'
 
 class Admin(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=False, null=False)
+    user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.user}'
 
 class Salesman(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=False, null=False)
-    store = models.ForeignKey(Store, on_delete=models,null=False,blank=False)
+    user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
         return f'{self.user}'
 
 class Grocer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=False, null=False)
-    store = models.ForeignKey(Store, on_delete=models,null=False,blank=False)
+    user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
         return f'{self.user}'

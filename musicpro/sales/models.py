@@ -1,6 +1,7 @@
 from django.db import models
 from products.models import Product
 from users.models import Store, Client, Salesman
+from products.models import *
 # Create your models here.
 
 class Payment_method(models.Model):
@@ -12,12 +13,12 @@ class Payment_method(models.Model):
 
 class Payment(models.Model):
     
-    price = models.IntegerField('price_payment',max_digits=10, blank=False, null=False)
+    price = models.IntegerField('price_payment', blank=False, null=False)
     auth_code = models.CharField('auth_code',max_length=50, blank=False, null=False)
-    payment_method = models.ForeignKey(Payment, on_delete=models.CASCADE, blank=False, null=False)
+    payment_method = models.ForeignKey(Payment_method, on_delete=models.CASCADE, blank=False, null=False)
 
 class Order(models.Model):
-    total_order
+    total_order = models.IntegerField(blank=False, null=False)
 
 class Sale(models.Model):
     type_sale = models.CharField('type_sale', max_length=50, blank=False, null=False)
@@ -37,4 +38,3 @@ class Detail_Order(models.Model):
     quantity = models.IntegerField('quantity', blank=False, null=False)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, blank=False, null=False)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=False, null=False)
-
