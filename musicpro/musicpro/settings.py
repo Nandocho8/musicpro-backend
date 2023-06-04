@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'products',
+    'sales',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -74,15 +78,22 @@ WSGI_APPLICATION = 'musicpro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': DATA_NAME,
+#     	'USER': DATA_USER,
+#     	'PASSWORD': DATA_PASSWORD,
+#         'HOST': DATA_HOST,
+
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DATA_NAME,
-    	'USER': DATA_USER,
-    	'PASSWORD': DATA_PASSWORD,
-        'HOST': DATA_HOST,
-
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'local_db.sqlite3',
+    },
 }
 
 
@@ -123,3 +134,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'
