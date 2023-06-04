@@ -22,6 +22,9 @@ class Subcategory(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+class Brand(models.Model):
+    name = models.CharField('brand', max_length=50, blank=False, null=False)
+
 class Product(models.Model):
     name = models.CharField('product', max_length=50, blank=False, null=False)
     description = models.TextField('description', blank=False, null=False)
@@ -29,11 +32,13 @@ class Product(models.Model):
     cost = models.IntegerField('cost',  blank=False, null=False)
     image = models.URLField('image')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=False, null=False)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, blank=False, null=False)
+
 
     def __str__(self):
         return f'{self.subcategory} {self.name}'
 
-class Brand(models.Model):
+class Stock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, blank=False, null=False)
     quantity = models.IntegerField('quantity', null=False,blank=False)
