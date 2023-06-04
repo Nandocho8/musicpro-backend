@@ -78,23 +78,23 @@ WSGI_APPLICATION = 'musicpro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': DATA_NAME,
-#     	'USER': DATA_USER,
-#     	'PASSWORD': DATA_PASSWORD,
-#         'HOST': DATA_HOST,
-
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'local_db.sqlite3',
-    },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATA_NAME,
+    	'USER': DATA_USER,
+    	'PASSWORD': DATA_PASSWORD,
+        'HOST': DATA_HOST,
+
+    }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'local_db.sqlite3',
+#     },
+# }
 
 
 # Password validation
