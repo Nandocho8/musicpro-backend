@@ -2,7 +2,7 @@
 	# and any extra step for this proyect.
 
 	# Activate Virtualenv
-	source ../bin/activate
+	source ../../bin/activate
 	# update pip
 	printf "\n > Updating pip ...\n\n"
 	pip install --upgrade pip
