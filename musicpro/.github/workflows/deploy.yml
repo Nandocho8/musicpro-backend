@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USER }}
+          key: ${{ secrets.HOST_KEY }}
+          script: |
+            cd /home/ubuntu/music_backend/musicpro-backend/musicpro
+            source ../../bin/activate
+            git pull origin main
+            python manage.py migrate
+            echo yes | python manage.py collectstatic
+            sudo supervisorctl restart djangoapp
+            deactivate
