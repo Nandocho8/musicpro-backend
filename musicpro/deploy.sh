@@ -22,5 +22,10 @@
 	printf "\n > Updating static files ...\n\n"
 	echo yes | python manage.py collectstatic
 
+	# restart gunicorn
+	printf "\n > Restarting djangoapp ...\n\n"
+	sudo supervisorctl restart djangoapp	
+	printf "\n > APP RESTARTED ...\n\n"
+
 	# Deactivate Virtualenv
 	deactivate
