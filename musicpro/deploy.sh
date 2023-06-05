@@ -2,7 +2,12 @@
 	# and any extra step for this proyect.
 
 	# Activate Virtualenv
-	source ../bin/activate
+	source ../../bin/activate
+
+	# pull changes from git
+	printf "\n > Pulling changes from git ...\n\n"
+	git pull origin main
+
 	# update pip
 	printf "\n > Updating pip ...\n\n"
 	pip install --upgrade pip
@@ -16,6 +21,11 @@
 	# collect statics
 	printf "\n > Updating static files ...\n\n"
 	echo yes | python manage.py collectstatic
+
+	# restart gunicorn
+	printf "\n > Restarting djangoapp ...\n\n"
+	sudo supervisorctl restart djangoapp	
+	printf "\n > APP RESTARTED ...\n\n"
 
 	# Deactivate Virtualenv
 	deactivate
