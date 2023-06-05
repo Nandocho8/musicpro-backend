@@ -3,6 +3,11 @@
 
 	# Activate Virtualenv
 	source ../../bin/activate
+
+	# pull changes from git
+	printf "\n > Pulling changes from git ...\n\n"
+	git pull origin main
+
 	# update pip
 	printf "\n > Updating pip ...\n\n"
 	pip install --upgrade pip
