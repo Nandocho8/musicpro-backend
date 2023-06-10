@@ -10,6 +10,8 @@ class Type_Serializers(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.id = validated_data.get("id", instance.id)
         instance.name = validated_data.get("name", instance.name)
+        instance.save()
+        return instance
 
 
 class Category_Serializers(serializers.ModelSerializer):
