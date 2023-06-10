@@ -7,6 +7,10 @@ class Type_Serializers(serializers.ModelSerializer):
         model = Type
         fields = "__all__"
 
+    def update(self, instance, validated_data):
+        instance.id = validated_data.get("id", instance.id)
+        instance.name = validated_data.get("name", instance.name)
+
 
 class Category_Serializers(serializers.ModelSerializer):
 
