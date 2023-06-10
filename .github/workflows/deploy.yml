@@ -22,6 +22,7 @@ jobs:
           script: |
             cd /home/ubuntu/music_backend/musicpro-backend/musicpro
             source ../../bin/activate
+            pip install -r requirements.txt
             git pull origin main
             python manage.py migrate
             echo yes | python manage.py collectstatic
