@@ -22,3 +22,8 @@ class Brand_Viewset(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = Brand_Serializers
+
+class Product_Viewset(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Product_Serializers

@@ -8,6 +8,7 @@ class Type_Serializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
+
 class Category_Serializers(serializers.ModelSerializer):
 
     class Meta:
@@ -21,9 +22,38 @@ class Subcategory_Serializers(serializers.ModelSerializer):
         model = Subcategory
         fields = "__all__"
 
+    def to_representation(self, instance):
+        return{
+            'id' : instance.id,
+            'name': instance.name,
+            'category': instance.category.name,
+            'type' : instance.category.type.name
+        }
+
 
 class Brand_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = Brand
         fields = "__all__"
+
+
+class Product_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        return{
+        'id': instance.id,
+        'name': instance.name,
+        'description': instance.description,
+        'price': "${:,.0f}".format(instance.price).replace(",","."),
+        'cost': instance.cost,
+        "image": instance.image,
+        "subcategory": instance.subcategory.name,
+        "category": instance.subcategory.category.name,
+        "type": instance.subcategory.category.type.name,
+        "brand": instance.brand.name
+        }
