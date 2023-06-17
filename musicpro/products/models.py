@@ -29,7 +29,6 @@ class Product(models.Model):
     name = models.CharField('product', max_length=50, blank=False, null=False)
     description = models.TextField('description', blank=False, null=False)
     price = models.IntegerField('price',  blank=False, null=False)
-    cost = models.IntegerField('cost',  blank=False, null=False)
     image = models.URLField('image')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=False, null=False)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, blank=False, null=False)
