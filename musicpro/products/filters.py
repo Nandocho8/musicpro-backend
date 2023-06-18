@@ -9,7 +9,7 @@ class Product_Filter(filters.FilterSet):
 
     class Meta:
         model = Product
-        fields = []
+        fields = ['id', 'subcategory']
         field_mappings = {
             'id': 'id',
             'subcategory': 'subcategory__name',
