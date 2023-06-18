@@ -49,7 +49,7 @@ class Product_Serializers(serializers.ModelSerializer):
         'id': instance.id,
         'name': instance.name,
         'description': instance.description,
-        'price': "${:,.0f}".format(instance.price).replace(",","."),
+        'price': "{:,.0f}".format(instance.price).replace(",","."),
         "image": instance.image,
         "subcategory": instance.subcategory.name,
         "category": instance.subcategory.category.name,
