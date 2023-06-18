@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions
 from .models import *
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
+from .filters import Product_Filter
 
 class Type_Viewset(viewsets.ModelViewSet):
     queryset = Type.objects.all()
@@ -29,4 +30,4 @@ class Product_Viewset(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = Product_Serializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'subcategory__name', 'subcategory__category__name','subcategory__category__type__name']
+    filterset_fields = Product_Filter
