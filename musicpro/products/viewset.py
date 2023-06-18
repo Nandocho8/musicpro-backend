@@ -30,4 +30,4 @@ class Product_Viewset(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = Product_Serializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = Product_Filter
+    filterset_class = Product_Filter
