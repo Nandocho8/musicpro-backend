@@ -15,7 +15,7 @@ class User_Serializers(serializers.ModelSerializer):
             type_user=validated_data['type_user'],
             name_user=validated_data['name_user'],
             last_name_user=validated_data['last_name_user'],
-            is_active=True,
+            is_active=1,
         )
         user.set_password(validated_data['password'])
         user.save()
