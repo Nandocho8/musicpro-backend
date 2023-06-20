@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from users.login import login_cliente
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("backend/", include('products.urls')),
-    path("backend/hello", include('users.urls'))
+    path("backend/", include('users.urls')),
+    path("backend/api/login", login_cliente, name='login_cliente')
 
 ]
