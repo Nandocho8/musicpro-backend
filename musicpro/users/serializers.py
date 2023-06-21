@@ -1,15 +1,17 @@
 from rest_framework import serializers
 from .models import User
 
+
 class User_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username','email', 'password', 'type_user','name_user', 'last_name_user')
+        fields = ('id', 'username', 'email', 'password',
+                  'type_user', 'name_user', 'last_name_user')
         read_only_fields = ('id', )
 
     def create(self, validated_data):
-        user=User.objects.create(
+        user = User.objects.create(
             email=validated_data['username'],
             username=validated_data['username'],
             type_user=validated_data['type_user'],
@@ -28,4 +30,23 @@ class User_Serializers(serializers.ModelSerializer):
         update_user.save()
         return update_user
 
-        
+
+class Region_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Region
+        fields = "__all__"
+
+
+class Comuna_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comuna
+        fields = "__all__"
+
+
+class Store_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Store
+        fields = "__all__"

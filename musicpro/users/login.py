@@ -4,8 +4,9 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import  User
+from .models import User
 from rest_framework import viewsets, permissions
+
 
 @api_view(['POST'])
 def login_cliente(request):
@@ -15,7 +16,7 @@ def login_cliente(request):
     password = data['password']
 
     try:
-        user = User.objects.get(email=email, type_user = 'C')
+        user = User.objects.get(email=email, type_user='C')
     except:
         return Response('Usuario Invalido')
 
@@ -28,7 +29,7 @@ def login_cliente(request):
 
     return Response({"token": token.key,
                     "id": user.id,
-                    'username': user.email,
-                    "nombre": user.first_name,
-                    "apellido": user.last_name_user,
-                    "tipo": user.type_user})
+                     'username': user.email,
+                     "nombre": user.name_user,
+                     "apellido": user.last_name_user,
+                     "tipo": user.type_user})
