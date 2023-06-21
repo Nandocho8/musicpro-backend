@@ -14,16 +14,16 @@ class User_Viewset(viewsets.ModelViewSet):
 class Region_Viewset(viewsets.ModelViewSet):
     queryset = Region.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = Region_Serializer
+    serializer_class = Region_Serializers
 
 
 class Comuna_Viewset(viewsets.ModelViewSet):
     queryset = Comuna.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = Comuna_Serializer
+    serializer_class = Comuna_Serializers
 
 
 class Store_Viewset(viewsets.ModelViewSet):
     queryset = Store.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = Store_Serializer
+    serializer_class = Store_Serializers
