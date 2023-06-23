@@ -63,3 +63,28 @@ class Stock_Serializers(serializers.ModelSerializer):
     class Meta:
         model = Stock
         fields = '__all__'
+
+class Product_Stock_Serializers(serializers.SerializerMethodField):
+
+
+    stocks = serializers.SerializerMethodField()
+    class Meta:
+        model = Product
+        fields = ['id','name','description','price', 'image', 'stocks','subcategory','brand']
+
+    def get_stocks(self, obj):
+        stocks = Stock.objects.filter(product=obj)
+        return Stock_Serializers(stocks, many=True).data
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        stocks = self.get_stocks(instance)
+        representation['stocks'] = stocks
+        subcategory_name = instance.subcategory.name
+        representation['subcategory'] = subcategory_name
+        
+        category_name = instance.subcategory.category.name
+        representation['category'] = category_name
+        brand_name = instance.brand.name
+        representation['brand'] = brand_name
+        return representation

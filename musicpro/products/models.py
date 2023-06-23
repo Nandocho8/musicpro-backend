@@ -38,7 +38,7 @@ class Product(models.Model):
         return f'{self.subcategory} {self.name}'
 
 class Stock(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
+    product = models.ForeignKey(Product, related_name='product', on_delete=models.CASCADE, blank=False, null=False)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, blank=False, null=False)
     quantity = models.IntegerField('quantity', null=False,blank=False)
 
