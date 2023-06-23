@@ -47,7 +47,8 @@ class Stock_Viewset(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = Stock_Serializers
 
+
 class Product_Stock_Viewset(viewsets.ModelViewSet):
-    queryset = Stock.objects.all()
+    queryset = Product.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = Product_Stock_Serializers
