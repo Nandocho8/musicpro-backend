@@ -62,10 +62,14 @@ class Product_Serializers(serializers.ModelSerializer):
 class Stock_Serializers(serializers.ModelSerializer):
 
     # store = serializers.StringRelatedField()
+    store = serializers.IntegerField(source='store.id')
+    store_name = serializers.CharField(source='store.name_store')
 
     class Meta:
         model = Stock
-        fields = ['store', 'quantity']
+        fields = ['store','store_name', 'quantity'] 
+
+
 
 
 class Product_Stock_Serializers(serializers.ModelSerializer):
@@ -75,18 +79,18 @@ class Product_Stock_Serializers(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'name', 'description', 'price',
-                  'image', 'subcategory', 'brand', 'stocks']
+                  'image',  'stocks']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        category_name = instance.subcategory.category.name
-        representation['category'] = category_name
+        # category_name = instance.subcategory.category.name
+        # representation['category'] = category_name
         stocks = self.get_stocks(instance)
         representation['stocks'] = stocks
-        subcategory_name = instance.subcategory.name
-        representation['subcategory'] = subcategory_name
-        brand_name = instance.brand.name
-        representation['brand'] = brand_name
+        # subcategory_name = instance.subcategory.name
+        # representation['subcategory'] = subcategory_name
+        # brand_name = instance.brand.name
+        # representation['brand'] = brand_name
         return representation
 
     def get_stocks(self, obj):
