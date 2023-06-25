@@ -15,18 +15,21 @@ class Payment_Serializers(serializers.ModelSerializer):
 
 
 class Sale_Serializers(serializers.ModelSerializer):
+
     class Meta:
         model = Sale
         fields = '__all__'
 
 
-class Order_Serializers(serializers.ModelSerializer):
+class Detail_Order_Serializers(serializers.ModelSerializer):
+
     class Meta:
-        model = Order
+        model = Detail_Order
         fields = '__all__'
 
 
-class Detail_Order_Serializers(serializers.ModelSerializer):
+class Order_Serializers(serializers.ModelSerializer):
+
     class Meta:
-        model = Detail_Order
+        model = Order
         fields = '__all__'

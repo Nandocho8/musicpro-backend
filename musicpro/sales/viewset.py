@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions
-from .models import *
+
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
-# from .filters import Product_Filter
+# from .filters imfrom rest_framework import status
 
 
 class Payment_method_Viewset(viewsets.ModelViewSet):
