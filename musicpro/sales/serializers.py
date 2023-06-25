@@ -1,18 +1,32 @@
-from  rest_framework import serializer
-from  .models import *
+from rest_framework import serializers
+from .models import *
 
 
-class Region_Serializers(serializer.ModelSerializer):
+class Payment_method_Serializers(serializers.ModelSerializer):
     class Meta:
-        model = Region
-        field = '__all__'
+        model = Payment_method
+        fields = '__all__'
 
-class Comuna_Serializers(serializer.ModelSerializer):
-    class Meta:
-        model = Comuna
-        field = '__all__'
 
-class Store_Serializers(serializer.ModelSerializer):
+class Payment_Serializers(serializers.ModelSerializer):
     class Meta:
-        model = Store
-        field = '__all__'
+        model = Payment
+        fields = '__all__'
+
+
+class Sale_Serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Sale
+        fields = '__all__'
+
+
+class Order_Serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+
+class Detail_Order_Serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Detail_Order
+        fields = '__all__'

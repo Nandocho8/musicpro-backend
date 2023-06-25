@@ -21,6 +21,7 @@ from users.login import login_cliente
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("backend/", include('products.urls')),
+    path("backend/", include('sales.urls')),
     path("backend/", include('users.urls')),
     path("backend/api/login", login_cliente, name='login_cliente')
 
