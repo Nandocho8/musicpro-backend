@@ -8,6 +8,9 @@ from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import render
 from django.template.loader import get_template
+import os
+from azure.storage.blob import BlobServiceClient
+from keys import enlace
 
 
 def validate_paroduct(data):
@@ -86,12 +89,22 @@ def Cart_Viewset(request):
         'details': articulos}
 
     html_create('ticket.html', context)
+    connection_string = enlace
+    container_name = "musicproboletas"
     # pdfkit_config = pdfkit.configuration(wkhtmltopdf='../')
     input_file = 'nuevo_archivo.html'
-    output_file = f'boleta{sale.id}.pdf'
+    output_pdf = pdfkit.from_file(input_file, False)
 
-    pdfkit.from_file(input_file, output_file)
-
+    blob_service_client = BlobServiceClient.from_connection_string(
+        connection_string)
+    container_client = blob_service_client.get_container_client(container_name)
+    blob_path = f"boleta{sale.id}.pdf"
+    blob_service_client = BlobServiceClient.from_connection_string(
+        connection_string)
+    container_client = blob_service_client.get_container_client(container_name)
+    blob_client = container_client.get_blob_client(blob_path)
+    blob_client.upload_blob(output_pdf, overwrite=True)
+    url_boleta = blob_client.url
     return Response({
-        'mensaje': "hola"
+        'mensaje': url_boleta
     })

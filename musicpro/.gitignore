@@ -3,3 +3,4 @@ keys.py
 migrations
 db.sqlite3
 __pycache__
+/sale/key.py
