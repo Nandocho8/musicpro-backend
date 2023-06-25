@@ -1,3 +1,4 @@
+import pdfkit
 from .models import *
 from products.models import Stock
 from rest_framework.parsers import JSONParser
@@ -5,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from datetime import datetime
 from django.db.models import Q
+from django.shortcuts import render
+from django.template.loader import get_template
 
 
 def validate_paroduct(data):
@@ -16,6 +19,12 @@ def validate_paroduct(data):
             return False
 
     return True
+
+
+def html_create(template, context={}):
+    contenido_html = render(None, template, context).content.decode("utf-8")
+    with open('nuevo_archivo.html', 'w') as archivo:
+        archivo.write(contenido_html)
 
 
 @api_view(['POST'])
@@ -36,7 +45,7 @@ def Cart_Viewset(request):
         payment_method=payment_method, auth_code=auth_code, price=price)
 
     order = Order.objects.create(total_order=price)
-
+    articulos = []
     for detail in details:
         product = Product.objects.get(id=detail['product'])
         quantity = detail['quantity']
@@ -46,6 +55,13 @@ def Cart_Viewset(request):
         product_stock.quantity -= quantity
         product_stock.save()
         total = stock.quantity
+        d = {
+            'product': product.name,
+            'quantity': quantity,
+            'price': product.price,
+            'subtotal': quantity * product.price
+        }
+        articulos.append(d)
         Detail_Order.objects.create(
             product=product,
             quantity=quantity,
@@ -60,6 +76,22 @@ def Cart_Viewset(request):
         payment=Payment.objects.get(id=payment.id)
     )
 
+    context = {
+        'sale': sale.id,
+        'type_sale': sale.type_sale,
+        'date_sale': sale.date_sale,
+        'auth_code': auth_code,
+        'store': store.name_store,
+        'total': price,
+        'details': articulos}
+
+    html_create('ticket.html', context)
+    # pdfkit_config = pdfkit.configuration(wkhtmltopdf='../')
+    input_file = 'nuevo_archivo.html'
+    output_file = f'boleta{sale.id}.pdf'
+
+    pdfkit.from_file(input_file, output_file)
+
     return Response({
-        "message": f'Orden realizada con exito Ale ahi veo como te mando la boleta',
+        'mensaje': "hola"
     })

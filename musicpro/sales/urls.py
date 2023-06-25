@@ -2,6 +2,7 @@ from rest_framework import routers
 from django.urls import path, include
 from .viewset import *
 
+
 router = routers.DefaultRouter()
 
 router.register('api/payment_method', Payment_method_Viewset, 'payment_method')
