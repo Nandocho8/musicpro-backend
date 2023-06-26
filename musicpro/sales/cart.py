@@ -1,3 +1,4 @@
+import io
 import tempfile
 import pdfkit
 from .models import *
@@ -9,7 +10,6 @@ from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import render
 from django.template.loader import render_to_string
-import os
 from azure.storage.blob import BlobServiceClient
 from keys import enlace
 
@@ -87,13 +87,13 @@ def Cart_Viewset(request):
         'total': price,
         'details': articulos}
 
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.html') as temp_file:
-        temp_file.write(html_create('ticket.html', context).encode("utf-8"))
-        temp_file_path = temp_file.name
+    temp_file = io.BytesIO(html_create(
+        'ticket.html', context).encode('utf-8'))
     connection_string = enlace
     container_name = "musicproboletas"
     # pdfkit_config = pdfkit.configuration(wkhtmltopdf='../')
-    output_pdf = pdfkit.from_file(temp_file_path, False)
+    output_pdf = pdfkit.from_string(
+        temp_file.getvalue().decode('utf-8'), False)
 
     blob_service_client = BlobServiceClient.from_connection_string(
         connection_string)
@@ -105,7 +105,7 @@ def Cart_Viewset(request):
     blob_client = container_client.get_blob_client(blob_path)
     blob_client.upload_blob(output_pdf, overwrite=True)
     url_boleta = blob_client.url
-    os.remove(temp_file_path)
+    temp_file.close()
     return Response({
         'mensaje': url_boleta
     })
