@@ -27,3 +27,25 @@ class Store_Viewset(viewsets.ModelViewSet):
     queryset = Store.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = Store_Serializers
+
+class Client_Viewset(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Client_Serializers
+
+
+class Admin_Viewset(viewsets.ModelViewSet):
+    queryset = Admin.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Admin_Serializers
+
+class Grocer_Viewset(viewsets.ModelViewSet):
+    queryset = Grocer.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Grocer_Serializers
+
+
+class Salesman_Viewset(viewsets.ModelViewSet):
+    queryset = Salesman.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Salesman_Serializers

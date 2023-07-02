@@ -38,6 +38,7 @@ class User(AbstractUser):
 
     username = models.CharField('username', blank=False, unique=True, max_length=60)
     email = models.EmailField("email", blank=False, null=False, unique=True)
+    rut = models.CharField('rut', blank=False, null=False, max_length=9)
     password = models.CharField(
         "password", max_length=512, blank=False, null=False)
     type_user = models.CharField("type_user", max_length=1, choices=TYPE_USER, default=CLIENT)
@@ -46,7 +47,7 @@ class User(AbstractUser):
     is_active = models.BooleanField("is_active", default=True)
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['email','password','type_user','rut','name_user','last_name_user','is_active']
 
     def __str__(self):
         return f'{self.type_user} {self.name_user} {self.last_name_user}'
@@ -59,24 +60,24 @@ class Client(models.Model):
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user_main_id}'
 
 class Admin(models.Model):
     user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user_main_id}'
 
 class Salesman(models.Model):
     user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user_main_id}'
 
 class Grocer(models.Model):
     user_main_id = models.OneToOneField(to=User, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE,null=False,blank=False)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user_main_id}'
