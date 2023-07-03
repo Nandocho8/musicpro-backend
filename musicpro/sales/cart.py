@@ -117,5 +117,5 @@ def Cart_Viewset(request):
     sale.save()
 
     return Response({
-        'mensaje': sale.url_boleta
+        'mensaje': sale.doc_url
     })
