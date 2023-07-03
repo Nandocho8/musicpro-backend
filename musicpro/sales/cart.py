@@ -42,11 +42,13 @@ def Cart_Viewset(request):
     payment_method = Payment_method.objects.get(id=1)
     auth_code = data['auth_code']
     price = data['price']
+    client = Client.objects.get(id=data['client'])
+    salesman = Salesman.objects.get(id=data['salesman'])
 
     payment = Payment.objects.create(
         payment_method=payment_method, auth_code=auth_code, price=price)
 
-    order = Order.objects.create(total_order=price)
+    order = Order.objects.create(total_order=price , status="P")
     articulos = []
     for detail in details:
         product = Product.objects.get(id=detail['product'])
@@ -75,7 +77,10 @@ def Cart_Viewset(request):
         type_sale="Boleta",
         date_sale=datetime.now(),
         order=Order.objects.get(id=order.id),
-        payment=Payment.objects.get(id=payment.id)
+        payment=Payment.objects.get(id=payment.id),
+        client=client,
+        salesman=salesman,
+        doc_url=""
     )
 
     context = {
@@ -106,6 +111,11 @@ def Cart_Viewset(request):
     blob_client.upload_blob(output_pdf, overwrite=True)
     url_boleta = blob_client.url
     temp_file.close()
+
+    sale = Sale.objects.get(id=sale.id)
+    sale.doc_url = url_boleta
+    sale.save()
+
     return Response({
-        'mensaje': url_boleta
+        'mensaje': sale.url_boleta
     })
