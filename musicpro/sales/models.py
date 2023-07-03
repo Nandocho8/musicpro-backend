@@ -50,7 +50,7 @@ class Sale(models.Model):
     salesman = models.ForeignKey(Salesman, on_delete=models.CASCADE, blank=False, null=False)
     payment = models.ForeignKey(
         Payment, on_delete=models.CASCADE, blank=False, null=False)
-    doc_url = models.URLField('boleta')
+    doc_url = models.URLField('boleta', max_length=600)
 
     def __str__(self):
         return f'{self.type_sale} N° {self.doc_number}'
