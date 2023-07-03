@@ -23,7 +23,19 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
+    PENDIENTE = 'P'
+    ACEPTADA = 'A'
+    DESPACHADA = 'D'
+    RECHAZADA = 'R'
+    STATUS_ORDER = [
+    (PENDIENTE, 'P'),
+    (ACEPTADA , 'A'),
+    (DESPACHADA , 'D'),
+    (RECHAZADA , 'R'),
+    ]
+
     total_order = models.IntegerField(blank=False, null=False)
+    status = models.CharField("STATUS", max_length=1, choices=STATUS_ORDER, default=PENDIENTE)
 
 
 class Sale(models.Model):
@@ -31,11 +43,11 @@ class Sale(models.Model):
         'type_sale', max_length=50, blank=False, null=False)
     # doc_number = models.IntegerField('doc_number', blank=False, null=False)
     date_sale = models.DateField('date_sale', blank=False, null=False)
-    # client = models.ForeignKey(
-    #     Client, on_delete=models.CASCADE, blank=False, null=False)
+    client = models.ForeignKey(
+        Client, on_delete=models.CASCADE, blank=False, null=False)
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE, blank=False, null=False)
-    # salesman = models.ForeignKey(Salesman, on_delete=models.CASCADE, blank=False, null=False)
+    salesman = models.ForeignKey(Salesman, on_delete=models.CASCADE, blank=False, null=False)
     payment = models.ForeignKey(
         Payment, on_delete=models.CASCADE, blank=False, null=False)
 
