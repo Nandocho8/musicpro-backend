@@ -23,17 +23,17 @@ class Store(models.Model):
         return f'Store {self.name_store}'
 
 class User(AbstractUser):
-    ACCOUNTER = 'O'
+    # constantes = value en bd
     ADMIN = 'A'
     CLIENT = 'C'
     GROCER = 'G'
     SALESMAN = 'S'
+    # opcion , muestra en form
     TYPE_USER = [
-        (ACCOUNTER, 'O'),
-        (ADMIN, 'A'),
-        (CLIENT, 'C'),
-        (GROCER, 'G'),
-        (SALESMAN, 'S'),
+        (ADMIN, 'ADMIN'),
+        (CLIENT, 'CLIENT'),
+        (GROCER, 'GROCER'),
+        (SALESMAN, 'SALESMAN'),
     ]
 
     username = models.CharField('username', blank=False, unique=True, max_length=60)

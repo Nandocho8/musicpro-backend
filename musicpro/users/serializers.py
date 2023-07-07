@@ -131,7 +131,7 @@ class User_Serializers(serializers.ModelSerializer):
             user = create_user(email , username , rut , type_user,  name_user, last_name_user, password)
             user_son = Grocer.objects.create(user_main_id=user, **grocer_data)
         elif type_user == 'C':
-            user = create_user(email , username , rut , type_user,  name_user, last_name_user, password)
+            user = create_user(email , email , rut , type_user,  name_user, last_name_user, password)
             print(f'\n\n\n\n{user}\n\n\n\n')
             print(client_data)
             user_son = Client.objects.create(user_main_id=user, **client_data)
