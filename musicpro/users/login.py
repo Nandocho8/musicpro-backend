@@ -32,4 +32,5 @@ def login_cliente(request):
                      'username': user.email,
                      "nombre": user.name_user,
                      "apellido": user.last_name_user,
-                     "tipo": user.type_user})
+                     "tipo": user.type_user,
+                     "last_login": user.last_login})
