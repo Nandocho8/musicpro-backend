@@ -42,7 +42,7 @@ def Cart_Viewset(request):
     payment_method = Payment_method.objects.get(id=1)
     auth_code = data['auth_code']
     price = data['price']
-    client = Client.objects.get(id=data['client'])
+    client = User.objects.get(id=data['client'])
     salesman = Salesman.objects.get(id=data['salesman'])
 
     payment = Payment.objects.create(
