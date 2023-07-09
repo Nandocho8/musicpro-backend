@@ -23,7 +23,7 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
-    PENDIENTE = 'P'
+    PENDIENTE = 'P'     
     ACEPTADA = 'A'
     ENBODEGA = 'G'
     ACEPTADABODEGA = 'B'
