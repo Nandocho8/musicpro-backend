@@ -16,7 +16,7 @@ def login_cliente(request):
     password = data['password']
 
     try:
-        user = User.objects.get(email=email, type_user='C')
+        user = User.objects.get(email=email)
     except:
         return Response('Usuario Invalido')
 
