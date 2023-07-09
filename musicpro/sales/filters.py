@@ -6,7 +6,7 @@ class Order_Filter(filters.FilterSet):
     status = filters.CharFilter(field_name='status', lookup_expr='exact')
 
     class Meta:
-        model = Product
+        model = Order
         fields = ['id', 'status']
         field_mappings = {
             'id': 'id',
