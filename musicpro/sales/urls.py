@@ -10,7 +10,7 @@ router.register('api/payment', Payment_Viewset, 'payment')
 router.register('api/order', Order_Viewset, 'order')
 router.register('api/detail_order', Detail_Order_Viewset, 'detail_order')
 router.register('api/sale', Sale_Viewset, 'sale')
-router.register('api/sale2', Sal2e_Viewset, 'sale')
+router.register('api/sale2', Sale2_Viewset, 'sale')
 
 
 urlpatterns = router.urls
