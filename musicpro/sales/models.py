@@ -54,7 +54,7 @@ class Sale(models.Model):
     # doc_number = models.IntegerField('doc_number', blank=False, null=False)
     date_sale = models.DateField('date_sale', blank=False, null=False)
     client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, blank=False, null=False)
+        User, on_delete=models.CASCADE, blank=False, null=False)
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE, blank=False, null=False)
     salesman = models.ForeignKey(Salesman, on_delete=models.CASCADE, blank=False, null=False)
