@@ -3,6 +3,7 @@ import tempfile
 import pdfkit
 from .models import *
 from products.models import Stock
+from users.models import *
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -79,7 +80,7 @@ def Cart_Viewset(request):
         order=Order.objects.get(id=order.id),
         payment=Payment.objects.get(id=payment.id),
         client=User.objects.get(id=client.id),
-        salesman=Salesmam.objects.get(id=salesman.id),
+        salesman=Salesman.objects.get(id=salesman.id),
         doc_url=""
     )
 
