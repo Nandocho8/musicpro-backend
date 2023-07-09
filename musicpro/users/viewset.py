@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions
 from .models import *
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
+from .filters import Comuna_Filter
 
 
 class User_Viewset(viewsets.ModelViewSet):
@@ -22,6 +23,8 @@ class Comuna_Viewset(viewsets.ModelViewSet):
     queryset = Comuna.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = Comuna_Serializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = Comuna_Filter
     http_method_names = ['get']
 
 
