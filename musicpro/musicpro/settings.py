@@ -20,6 +20,7 @@ from keys import DATA_HOST, KEY, DATA_USER, DATA_NAME, DATA_PASSWORD
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/static/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -140,13 +141,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 # REST_FRAMEWORK = {
