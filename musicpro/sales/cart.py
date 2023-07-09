@@ -79,7 +79,7 @@ def Cart_Viewset(request):
         date_sale=datetime.now(),
         order=Order.objects.get(id=order.id),
         payment=Payment.objects.get(id=payment.id),
-        client=User.objects.get(id=id),
+        client=User.objects.get(id=client.id),
         salesman=Salesman.objects.get(id=salesman.id),
         doc_url=""
     )
