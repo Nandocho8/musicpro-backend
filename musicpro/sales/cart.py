@@ -43,7 +43,7 @@ def Cart_Viewset(request):
     payment_method = Payment_method.objects.get(id=1)
     auth_code = data['auth_code']
     price = data['price']
-    client = User.objects.get(id=data['client'])
+    client = Client.objects.get(user_main_id=data['client'])
     salesman = Salesman.objects.get(id=data['salesman'])
 
     payment = Payment.objects.create(
@@ -79,7 +79,7 @@ def Cart_Viewset(request):
         date_sale=datetime.now(),
         order=Order.objects.get(id=order.id),
         payment=Payment.objects.get(id=payment.id),
-        client=User.objects.get(id=client.id),
+        client=Client.objects.get(user_main_id=client.id),
         salesman=Salesman.objects.get(id=salesman.id),
         doc_url=""
     )
