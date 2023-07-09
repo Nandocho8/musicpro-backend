@@ -25,13 +25,23 @@ class Payment(models.Model):
 class Order(models.Model):
     PENDIENTE = 'P'
     ACEPTADA = 'A'
-    DESPACHADA = 'D'
-    RECHAZADA = 'R'
+    ENBODEGA = 'G'
+    ACEPTADABODEGA = 'B'
+    DESPACHOVENDEDOR = 'V'
+    DESPACHADACLIENTE = 'C'
+    RETIROTIENDA = 'S'
+    ENTREGADO = 'E'
+    RECHAZADO = 'R'
     STATUS_ORDER = [
-    (PENDIENTE, 'P'),
-    (ACEPTADA , 'A'),
-    (DESPACHADA , 'D'),
-    (RECHAZADA , 'R'),
+    (PENDIENTE, 'Pendiente'),
+    (ACEPTADA , 'Aceptado Vendedor'),
+    (ENBODEGA , 'En bodega'),
+    (ACEPTADABODEGA , 'Aceptada por bodeguero'),
+    (DESPACHOVENDEDOR , 'Despachado a Vendedor'),
+    (DESPACHADACLIENTE , 'Despachado a Cliente'),
+    (RETIROTIENDA , 'Retiro en Tienda'),
+    (ENTREGADO , 'ENTREGADO'),
+    (RECHAZADO , 'Rechazado'),
     ]
 
     total_order = models.IntegerField(blank=False, null=False)
