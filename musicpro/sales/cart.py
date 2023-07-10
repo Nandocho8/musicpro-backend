@@ -90,6 +90,10 @@ def Cart_Viewset(request):
         'date_sale': sale.date_sale,
         'auth_code': auth_code,
         'store': store.name_store,
+        'client_name' : client.name_user + client.last_name_user,
+        'client_email' : client.email,
+        'salesman_name' : salesman.name_user + salesman.last_name_user,
+        'salesman_email' : salesman.email,
         'total': price,
         'details': articulos}
 
