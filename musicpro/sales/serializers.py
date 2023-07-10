@@ -20,6 +20,18 @@ class Sale_Serializers(serializers.ModelSerializer):
         model = Sale
         fields = '__all__'
 
+    def to_representation(self,instance):
+        return {
+            "type_sale" : instance.type_sale,
+            "date_sale" : instance.date_sale,
+            "client" : instance.client,
+            "order" : instance.order,
+            "salesman" : instance.salesman,
+            "payment" : instance.payment,
+            "doc_url" : instance.doc_url,
+            "store" : instance.store
+            "total" : instance.order.total_order
+        }        
 
 
 class Detail_Order_Serializers(serializers.ModelSerializer):
