@@ -29,7 +29,7 @@ class Sale_Serializers(serializers.ModelSerializer):
             "salesman" : instance.salesman,
             "payment" : instance.payment,
             "doc_url" : instance.doc_url,
-            "store" : instance.store
+            "store" : instance.store,
             "total" : instance.order.total_order
         }        
 
