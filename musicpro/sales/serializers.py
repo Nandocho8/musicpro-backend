@@ -24,12 +24,12 @@ class Sale_Serializers(serializers.ModelSerializer):
         return {
             "type_sale" : instance.type_sale,
             "date_sale" : instance.date_sale,
-            "client" : instance.client,
-            "order" : instance.order,
-            "salesman" : instance.salesman,
-            "payment" : instance.payment,
+            "client" : instance.client.id,
+            "order" : instance.order.id,
+            "salesman" : instance.salesman.id,
+            "payment" : instance.payment.id,
             "doc_url" : instance.doc_url,
-            "store" : instance.store,
+            "store" : instance.store.id,
             "total" : instance.order.total_order
         }        
 
