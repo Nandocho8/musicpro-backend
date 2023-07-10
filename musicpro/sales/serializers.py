@@ -21,6 +21,7 @@ class Sale_Serializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class Detail_Order_Serializers(serializers.ModelSerializer):
 
     class Meta:
