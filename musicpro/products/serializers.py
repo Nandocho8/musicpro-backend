@@ -83,14 +83,9 @@ class Product_Stock_Serializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        # category_name = instance.subcategory.category.name
-        # representation['category'] = category_name
         stocks = self.get_stocks(instance)
         representation['stocks'] = stocks
-        # subcategory_name = instance.subcategory.name
-        # representation['subcategory'] = subcategory_name
-        # brand_name = instance.brand.name
-        # representation['brand'] = brand_name
+
         return representation
 
     def get_stocks(self, obj):

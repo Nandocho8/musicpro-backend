@@ -73,4 +73,4 @@ class Detail_Order(models.Model):
     store = models.ForeignKey(
         Store, on_delete=models.CASCADE, blank=False, null=False)
     order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, blank=False, null=False)
+        Order, related_name='detail_order', on_delete=models.CASCADE, blank=False, null=False)

@@ -38,3 +38,7 @@ class Sale_Viewset(viewsets.ModelViewSet):
     serializer_class = Sale_Serializers
 
 
+class Order_With_Details_Viewset(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = Order_With_Details_Serializers
