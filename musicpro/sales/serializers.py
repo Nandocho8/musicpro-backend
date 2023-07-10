@@ -22,6 +22,7 @@ class Sale_Serializers(serializers.ModelSerializer):
 
     def to_representation(self,instance):
         return {
+            "id" : instance.id,
             "type_sale" : instance.type_sale,
             "date_sale" : instance.date_sale,
             "client" : instance.client.id,
