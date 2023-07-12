@@ -136,3 +136,6 @@ class User_Serializers(serializers.ModelSerializer):
             user_son = Client.objects.create(user_main_id=user, **client_data)
 
         return user
+
+    def update(self, validated_data):
+        return {"status_user" : "usuario actializado"}
