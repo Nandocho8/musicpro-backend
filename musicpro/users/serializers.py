@@ -137,5 +137,18 @@ class User_Serializers(serializers.ModelSerializer):
 
         return user
 
-    def update(self, validated_data):
-        return {"status_user" : "usuario actializado"}
+    def update(self, instance, validated_data):
+        # Actualiza los campos del usuario
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.password = validated_data.get('password', instance.password)
+        instance.save()
+
+        # Actualiza los datos del cliente relacionado
+        client_data = validated_data.get('client')
+        if client_data:
+            client_serializer = ClientSerializer(instance.client, data=client_data, partial=True)
+            if client_serializer.is_valid():
+                client_serializer.save()
+
+        return instance
